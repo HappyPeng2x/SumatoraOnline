@@ -1,0 +1,44 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+<h1>Results</h1>
+
+{% for r in results %}
+
+<p>{{ r.seq }}</p>
+
+{% for w in r.get_writings %}
+
+{% if w.prio %}
+<b>
+{% endif %}
+  
+{{ w.writing }}
+
+{%if w.prio %}
+</b>
+{% endif %}
+
+{% if not forloop.last %} - {% endif %}
+
+{% endfor %}
+
+{% for w in r.get_readings %}
+
+{% if w.prio %}
+<b>
+{% endif %}
+  
+{{ w.writing }}
+
+{%if w.prio %}
+</b>
+{% endif %}
+
+{% if not forloop.last %} - {% endif %}
+
+{% endfor %}
+
+{% endfor %}
+
+{% endblock %}
