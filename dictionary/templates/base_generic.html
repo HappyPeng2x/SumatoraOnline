@@ -2,31 +2,31 @@
 
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta http-equiv="x-ua-compatible" content="ie=edge">
-  <title>Material Design for Bootstrap</title>
-  <link rel="stylesheet" href="{% static "css/all.css" %}">
-  <link rel="stylesheet" href="{% static "mdb/css/bootstrap.min.css" %}">
-  <link rel="stylesheet" href="{% static "mdb/css/mdb.min.css" %}">
-</head>
-<body>
-  <header>
-    <nav class="navbar navbar-expand-lg navbar-dark primary-color">
-      <a class="navbar-brand" href="#">sumatora</a>
-  </nav>
-</header>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>Sumatora Japanese Dictionary</title>
+    <link rel="stylesheet" href="{% static "fontawesome/css/all.css" %}">
+    <link rel="stylesheet" href="{% static "mdb/css/bootstrap.min.css" %}">
+    <link rel="stylesheet" href="{% static "mdb/css/mdb.min.css" %}">
+  </head>
+  <body>
+    <header>
+      <nav class="navbar navbar-expand-lg navbar-dark primary-color">
+	<a class="navbar-brand" href="#">sumatora</a>
+      </nav>
+    </header>
 
-  <main>
-    {% block content %}
-    {% endblock %}
-  </main>
+    <main>
+      {% block content %}
+      {% endblock %}
+    </main>
 
-<script type="text/javascript" src="{% static "mdb/js/jquery.min.js" %}"></script>
-<script type="text/javascript" src="{% static "mdb/js/popper.min.js" %}"></script>
-<script type="text/javascript" src="{% static "mdb/js/bootstrap.min.js" %}"></script>
-<script type="text/javascript" src="{% static "mdb/js/mdb.min.js" %}"></script>
+    <script type="text/javascript" src="{% static "mdb/js/jquery.min.js" %}"></script>
+    <script type="text/javascript" src="{% static "mdb/js/popper.min.js" %}"></script>
+    <script type="text/javascript" src="{% static "mdb/js/bootstrap.min.js" %}"></script>
+    <script type="text/javascript" src="{% static "mdb/js/mdb.min.js" %}"></script>
 
-</body>
+  </body>
 </html>

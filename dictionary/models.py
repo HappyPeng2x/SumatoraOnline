@@ -42,12 +42,12 @@ class DictionaryDisplayElement(models.Model):
         
         for w in self.readingsPrio.split(' '):
             if len(w) > 0:
-                d = {'prio':True, 'writing':w}
+                d = {'prio':True, 'reading':w}
                 r = r + [d]
                 
         for w in self.readings.split(' '):
             if len(w) > 0:
-               d = {'prio':False, 'writing':w}
+               d = {'prio':False, 'reading':w}
                r = r + [d]
                
         return r

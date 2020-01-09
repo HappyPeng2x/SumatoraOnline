@@ -39,7 +39,7 @@ WHERE
 
     results = DictionaryDisplayElement.objects.raw(query, [term])
 
-    context = { 'results':results }
+    context = { 'results':results, 'term':term}
     
     return render(request, 'dictionary/results.html', context)
 
