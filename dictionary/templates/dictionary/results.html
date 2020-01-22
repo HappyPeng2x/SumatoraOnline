@@ -17,7 +17,9 @@
   
 </div>
 
-{% for r in results %}
+{% for result in results %}
+
+{% for r in result %}
 
 <div class="card">
   <div class="card-body">
@@ -29,7 +31,6 @@
       {% if w.prio %}
       <mark>
 	{% endif %}
-	
 	{{ w.writing }}
 
 	{%if w.prio %}
@@ -62,9 +63,28 @@
 
       {% endfor %}
 
+      {% for g in r.get_gloss %}
+
+      <b>{{ forloop.counter }}.</b>
+
+      <span class="indigo-text">
+	{% for pos in g.pos %}
+	{{ pos }}{% if not forloop.last %},
+	{% endif %}
+	{% endfor %}
+      </span>
+      {% for gloss in g.gloss %}
+      {{ gloss }}{% if not forloop.last %},
+      {% endif %}
+      {% endfor %}
+
+      {% endfor %}
+
     </p>
   </div>
 </div>
+
+{% endfor %}
 
 {% endfor %}
 

@@ -1,4 +1,14 @@
+import json
+
 from django.db import models
+
+class DictionaryEntity(models.Model):
+    name = models.TextField(primary_key=True)
+    content = models.TextField()
+
+    class Meta:
+        managed = False
+        db_table = 'unspecified'
 
 class DictionaryDisplayElement(models.Model):
     entryOrder = models.IntegerField()
@@ -21,6 +31,31 @@ class DictionaryDisplayElement(models.Model):
     class Meta:
         managed = False
         db_table = 'unspecified'
+
+    def convert_pos(self):
+        pos = json.loads(self.pos)
+        r = []
+
+        for p in pos:
+            s = []
+            
+            for e in p:
+                s.append(DictionaryEntity.objects.raw('SELECT * FROM jmdict.DictionaryEntity WHERE name=%s', [e])[0].content)
+
+            r.append(s)
+
+        return r
+
+    def get_gloss(self):
+        gloss = json.loads(self.gloss)
+        pos = self.convert_pos()
+        r = []
+
+        for i in range(0, len(gloss)):
+            r.append({'pos':pos[i],
+                      'gloss':gloss[i]})
+
+        return r
 
     def get_writings(self):
         r = []

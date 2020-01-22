@@ -3,41 +3,14 @@ from django.http import HttpResponse, HttpResponseRedirect
 from django.urls import reverse
 
 from dictionary.forms import SearchForm
-from dictionary.models import DictionaryDisplayElement
+
+import dictionary.queries as q
 
 def index(request):
     return HttpResponse("Hello, world. You're at the dictionary index.")
 
 def results(request, term):
-    query = """
-SELECT
-  1 AS entryOrder,
-  DictionaryEntry.seq,
-  DictionaryEntry.readingsPrio, 
-  DictionaryEntry.readings, 
-  DictionaryEntry.writingsPrio,
-  DictionaryEntry.writings,
-  DictionaryEntry.pos,
-  DictionaryEntry.xref,
-  DictionaryEntry.ant,
-  DictionaryEntry.misc, 
-  DictionaryEntry.lsource,
-  DictionaryEntry.dial,
-  DictionaryEntry.s_inf, 
-  DictionaryEntry.field,
-  DictionaryTranslation.lang,
-  DictionaryTranslation.gloss
-FROM
-  jmdict.DictionaryEntry, 
-  eng.DictionaryTranslation
-WHERE
-  DictionaryEntry.seq = DictionaryTranslation.seq AND
-  DictionaryEntry.seq IN
-  (SELECT DictionaryIndex.`rowid`
-   FROM DictionaryIndex
-   WHERE writingsPrio MATCH %s)"""
-
-    results = DictionaryDisplayElement.objects.raw(query, [term])
+    results = q.execute(term, 0)
 
     context = { 'results':results, 'term':term}
     
