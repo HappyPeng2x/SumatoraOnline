@@ -10,7 +10,7 @@ def index(request):
     return HttpResponse("Hello, world. You're at the dictionary index.")
 
 def results(request, term):
-    results = q.execute(term, 0)
+    results = q.execute(term, 0, 30)
 
     context = { 'results':results, 'term':term}
     
